@@ -1,0 +1,71 @@
+#include <iostream>
+using namespace std;
+
+int sumaDosNumeros(int a, int b);
+int esPositivoNegativo(int x);   
+int factorial(int x);
+
+int main() {
+    int opcion;
+    int x, y;
+
+    cout << "MENU\n";
+    cout << "1. Suma de dos numeros\n";
+    cout << "2. Numero positivo o negativo\n";
+    cout << "3. Factorial\n";
+    cout << "Elija una opcion: ";
+    cin >> opcion;
+
+    if (opcion == 1) {
+        cout << "Ingrese el primer numero: ";
+        cin >> x;
+        cout << "Ingrese el segundo numero: ";
+        cin >> y;
+        cout << "La suma es: " << sumaDosNumeros(x, y) << endl;
+    }
+    else if (opcion == 2) {
+        cout << "Ingrese un numero: ";
+        cin >> x;
+
+        int resultado = esPositivoNegativo(x);
+        if (resultado == 1)
+            cout << "El numero es positivo" << endl;
+        else if (resultado == -1)
+            cout << "El numero es negativo" << endl;
+        else
+            cout << "El numero es cero" << endl;
+    }
+    else if (opcion == 3) {
+        cout << "Ingrese un numero para el factorial: ";
+        cin >> x;
+
+        if (x < 0) {
+            cout << "No existe factorial de numeros negativos" << endl;
+        } else {
+            cout << "El factorial es: " << factorial(x) << endl;
+        }
+    }
+    else {
+        cout << "Opcion no valida" << endl;
+    }
+
+    return 0;
+}
+
+int sumaDosNumeros(int a, int b) {
+    return a + b;
+}
+
+int esPositivoNegativo(int x) {
+    if (x > 0) return 1;
+    if (x < 0) return -1;
+    return 0;
+}
+
+int factorial(int x) {
+    int resultado = 1;
+    for (int i = 2; i <= x; i++) {
+        resultado *= i;
+    }
+    return resultado;
+}
