@@ -1,0 +1,83 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int factorial(int num);
+int sumaImpar(int N);
+int sumaEntero(int n);
+
+int main() {
+int opcion, a, b, result;
+
+do {
+cout << "Elige una opción:\n";
+cout << "1. factorial\n";
+cout << "2. Suma alterada\n";
+cout << "3. Suma impar\n";
+cout << "0. Salir\n";
+cout << "Opción: ";
+cin >> opcion;
+
+switch (opcion) {
+case 1: {
+int num;
+cout << "ingrese el numero para calcular factorial: ";
+cin >> num;
+cout<<"el factorial de: " << num << " es: " << factorial(num) << endl;
+break;
+}
+case 2: {
+int n;
+cout << "ingrese numero entero positivo: ";
+cin >> n;
+cout << "el resultado de la suma alterada es: ";
+cout << sumaEnteroNo;
+return 0;
+break;
+}
+case 3: {
+int N;
+cout << "ingrese valor de N: ";
+cin >> N;
+cout << "la suma de los numero impares entre 1 y " << N << " es : " << sumaImpar(N) << endl;
+break;
+}
+case 0:
+cout << "¡Hasta luego!\n";
+return 0;
+break;
+default:
+cout << "Opción no válida. Intenta de nuevo.\n";
+break;
+}
+} while (opcion != 0);
+
+return 0;
+}
+
+int factorial(int N) {
+if ((N == 0) || (N == 1))
+return 1;
+else
+return factorial(N - 1) * N;
+
+}
+
+int sumaEntero(int n) {
+if (n == 1)
+return 1;
+if (n % 2 == 0)
+return sumaEntero(n - 1) - n;
+else
+return sumaEntero(n - 1) + 1;
+}
+
+int sumaImpar(int N) {
+if (N <= 0)
+return 0;
+if (N % 2 != 0)
+return N + sumaImpar(N - 2);
+else
+return sumaImpar(N-1);
+}
+
