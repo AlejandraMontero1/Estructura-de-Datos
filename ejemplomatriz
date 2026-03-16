@@ -22,7 +22,7 @@ void menu() {
         cout << "1. Cargar Matriz" << endl;
         cout << "2. Mostrar Matriz" << endl;
         cout << "3. Cargar una matriz cuadrada de forma circular con los primeros numeros naturales" << endl;
-        cout << "4. Salir" << endl;
+        cout << "0. Salir" << endl;
         cout << "Seleccione una opcion: ";
         cin >> opcion;
 
@@ -63,7 +63,7 @@ void menu() {
             cout << "\nMatriz circular cargada con exito." << endl;
             break;
 
-        case 4:
+        case 0:
             cout << "Saliendo del programa..." << endl;
             break;
 
@@ -71,7 +71,7 @@ void menu() {
             cout << "Opcion no valida." << endl;
             break;
         }
-    } while (opcion != 4);
+    } while (opcion != 0);
 }
 
 void cargar(int matrix[MAXROW][MAXCOL], int n, int m) {
