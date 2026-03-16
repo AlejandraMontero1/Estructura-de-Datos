@@ -1,0 +1,126 @@
+#include <iostream>
+#define MAXROW 20
+#define MAXCOL 20
+using namespace std;
+
+void cargar(int matrix[MAXROW][MAXCOL], int n, int m);
+void mostrar(int matrix[MAXROW][MAXCOL], int n, int m);
+void cargarCircular(int matrix[MAXROW][MAXCOL], int n);
+void menu();
+
+int main() {
+    menu();
+    return 0;
+}
+
+void menu() {
+    int tamrow = 0, tamcol = 0, matriz[MAXROW][MAXCOL];
+    int opcion;
+
+    do {
+        cout << "\n========== MENU ==========" << endl;
+        cout << "1. Cargar Matriz" << endl;
+        cout << "2. Mostrar Matriz" << endl;
+        cout << "3. Cargar una matriz cuadrada de forma circular con los primeros numeros naturales" << endl;
+        cout << "4. Salir" << endl;
+        cout << "Seleccione una opcion: ";
+        cin >> opcion;
+
+        switch (opcion) {
+        case 1:
+            do {
+                cout << "Ingrese el numero de filas (1-" << MAXROW << "): ";
+                cin >> tamrow;
+            } while ((tamrow <= 0) || (tamrow > MAXROW));
+
+            do {
+                cout << "Ingrese el numero de columnas (1-" << MAXCOL << "): ";
+                cin >> tamcol;
+            } while ((tamcol <= 0) || (tamcol > MAXCOL));
+
+            cargar(matriz, tamrow, tamcol);
+            break;
+
+        case 2:
+            if (tamrow > 0 && tamcol > 0) {
+                mostrar(matriz, tamrow, tamcol);
+            }
+            else {
+                cout << "\n[!] La matriz esta vacia. Cargue datos primero." << endl;
+            }
+            break;
+
+        case 3:
+            int n;
+            do {
+                cout << "Ingrese el tamano para la matriz cuadrada (1-" << MAXROW << "): ";
+                cin >> n;
+            } while (n <= 0 || n > MAXROW);
+
+            tamrow = n;
+            tamcol = n;
+            cargarCircular(matriz, n);
+            cout << "\nMatriz circular cargada con exito." << endl;
+            break;
+
+        case 4:
+            cout << "Saliendo del programa..." << endl;
+            break;
+
+        default:
+            cout << "Opcion no valida." << endl;
+            break;
+        }
+    } while (opcion != 4);
+}
+
+void cargar(int matrix[MAXROW][MAXCOL], int n, int m) {
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            cout << "matrix[" << i + 1 << "][" << j + 1 << "]: ";
+            cin >> matrix[i][j];
+        }
+    }
+}
+
+void mostrar(int matrix[MAXROW][MAXCOL], int n, int m) {
+    cout << "\nVisualizando matriz:" << endl;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            cout << matrix[i][j] << "\t";
+        }
+        cout << endl;
+    }
+}
+
+void cargarCircular(int matrix[MAXROW][MAXCOL], int n) {
+    int inicioRow = 0, finRow = n - 1;
+    int inicioCol = 0, finCol = n - 1;
+    int contador = 1;
+
+    while (inicioRow <= finRow && inicioCol <= finCol) {
+        for (int j = inicioCol; j <= finCol; j++) {
+            matrix[inicioRow][j] = contador++;
+        }
+        inicioRow++;
+
+        for (int i = inicioRow; i <= finRow; i++) {
+            matrix[i][finCol] = contador++;
+        }
+        finCol--;
+
+        if (inicioRow <= finRow) {
+            for (int j = finCol; j >= inicioCol; j--) {
+                matrix[finRow][j] = contador++;
+            }
+            finRow--;
+        }
+
+        if (inicioCol <= finCol) {
+            for (int i = finRow; i >= inicioRow; i--) {
+                matrix[i][inicioCol] = contador++;
+            }
+            inicioCol++;
+        }
+    }
+}
