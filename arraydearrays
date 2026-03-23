@@ -1,0 +1,46 @@
+.cpp
+#include "Vector.h"
+#define MAX 10
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+Vector::Vector() {
+    n = 0;
+}
+
+void Vector::cargar(int tam) {
+    n = tam;
+    for (int i = 0; i < n; i++) {
+        cout << "Elemento " << i << ": ";
+        cin >> dato[i];
+    }
+}
+
+void Vector::mostrar() {
+    cout << "[ ";
+    for (int i = 0; i < n; i++) {
+        cout << dato[i];
+        if (i < n - 1) {
+            cout << " ";
+        }
+    }
+    cout << " ]";
+}
+
+void Vector::setDato(int pos, string valor) {
+    dato[pos] = valor;
+}
+
+string Vector::getDato(int pos) const {
+    return dato[pos];
+}
+
+void Vector::setN(int tam) {
+    n = tam;
+}
+
+int Vector::getN() const {
+    return n;
+}
