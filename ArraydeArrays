@@ -1,0 +1,22 @@
+.h
+#pragma once
+#define MAX 10
+#include <iostream>
+#include <string>
+
+using namespace std;
+class Vector
+{
+	private: //atributo
+		string dato[MAX];
+		int n;
+	public: //metodos
+		Vector();
+		void cargar(int tam);
+		void mostrar(); //este estilo es para trabajar conn los atributos const
+		void setDato(int pos, string valor);
+		string getDato(int pos) const;
+		void setN(int tam);
+		int getN() const;
+
+};
