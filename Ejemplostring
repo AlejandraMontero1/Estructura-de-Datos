@@ -1,0 +1,231 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+// Prototipos
+void contar();
+void longitud();
+void extraer();
+void intercambio();
+void comparar();
+void encontrar();
+void invertir();
+void capicua();
+void quitarvocal();
+
+int main() {
+    int op;
+
+    do {
+        cout << "\n1. Contar vocales" << endl;
+        cout << "2. Longitud de un string" << endl;
+        cout << "3. Extraer una parte" << endl;
+        cout << "4. Intercambio de string" << endl;
+        cout << "5. Comparar string" << endl;
+        cout << "6. Encontrar un caracter" << endl;
+        cout << "7. Invertir" << endl;
+        cout << "8. Determinar si es capicua" << endl;
+        cout << "9. Quitar vocales" << endl;
+        cout << "0. SALIR" << endl;
+        cout << "Ingrese opcion: ";
+        cin >> op;
+
+        switch (op) {
+        case 1: 
+            contar(); 
+            break;
+        case 2: 
+            longitud(); 
+            break;
+        case 3: 
+            extraer(); 
+            break;
+        case 4: 
+            intercambio(); 
+            break;
+        case 5: 
+            comparar(); 
+            break;
+        case 6: 
+            encontrar(); 
+            break;
+        case 7: 
+            invertir(); 
+            break;
+        case 8: 
+            capicua(); 
+            break;
+        case 9: 
+            quitarvocal(); 
+            break;
+        case 0: cout << "Saliendo...\n"; 
+            break;
+        default: cout << "Opcion invalida\n";
+        }
+
+    } while (op != 0);
+
+    return 0;
+}
+
+void contar() {
+    string texto;
+    int vocales = 0;
+
+    cout << "Ingrese una palabra: ";
+    cin >> texto;
+
+    for (int i = 0; i < texto.length(); i++) {
+        char c = texto[i];
+        if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u' ||
+            c == 'A' || c == 'E' || c == 'I' || c == 'O' || c == 'U') {
+            vocales++;
+        }
+    }
+
+    cout << "Vocales: " << vocales << endl;
+}
+
+void longitud() {
+    string texto;
+
+    cout << "Ingrese una palabra: ";
+    cin >> texto;
+
+    cout << "Longitud: " << texto.length() << endl;
+}
+
+
+void extraer() {
+    string texto;
+    int inicio, cantidad;
+
+    cout << "Ingrese una palabra: ";
+    cin >> texto;
+
+    cout << "Inicio: ";
+    cin >> inicio;
+    cout << "Cantidad: ";
+    cin >> cantidad;
+
+    string sub = "";
+    for (int i = inicio; i < inicio + cantidad && i < texto.length(); i++) {
+        sub += texto[i];
+    }
+
+    cout << "Subcadena: " << sub << endl;
+}
+
+
+void intercambio() {
+    string a, b, temp;
+
+    cout << "String 1: ";
+    cin >> a;
+    cout << "String 2: ";
+    cin >> b;
+
+    temp = a;
+    a = b;
+    b = temp;
+
+    cout << "Nuevo 1: " << a << endl;
+    cout << "Nuevo 2: " << b << endl;
+}
+
+
+void comparar() {
+    string a, b;
+
+    cout << "texto 1: ";
+    cin >> a;
+    cout << "texto 2: ";
+    cin >> b;
+
+    if (a == b)
+        cout << "Iguales\n";
+    else if (a > b)
+        cout << "Mayor: primero\n";
+    else
+        cout << "Mayor: segundo\n";
+}
+
+
+void encontrar() {
+    string texto;
+    char c;
+    bool encontrado = false;
+
+    cout << "Ingrese una palabra: ";
+    cin >> texto;
+
+    cout << "Caracter: ";
+    cin >> c;
+
+    for (int i = 0; i < texto.length(); i++) {
+        if (texto[i] == c) {
+            cout << "Encontrado en posicion: " << i << endl;
+            encontrado = true;
+            break;
+        }
+    }
+
+    if (!encontrado)
+        cout << "No encontrado\n";
+}
+
+
+void invertir() {
+    string texto, invertido = "";
+
+    cout << "Ingrese una palabra: ";
+    cin >> texto;
+
+    for (int i = texto.length() - 1; i >= 0; i--) {
+        invertido += texto[i];
+    }
+
+    cout << "Invertido: " << invertido << endl;
+}
+
+
+void capicua() {
+    string texto;
+    bool es = true;
+
+    cout << "Ingrese una palabra: ";
+    cin >> texto;
+
+    int n = texto.length();
+
+    for (int i = 0; i < n / 2; i++) {
+        if (texto[i] != texto[n - 1 - i]) {
+            es = false;
+            break;
+        }
+    }
+
+    if (es)
+        cout << "Es capicua\n";
+    else
+        cout << "No es capicua\n";
+}
+
+
+void quitarvocal() {
+    string texto, res = "";
+
+    cout << "Ingrese una palabra: ";
+    cin >> texto;
+
+    for (int i = 0; i < texto.length(); i++) {
+        char c = texto[i];
+        if (!(c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u' ||
+            c == 'A' || c == 'E' || c == 'I' || c == 'O' || c == 'U')) {
+            res += c;
+        }
+    }
+
+    cout << "Sin vocales: " << res << endl;
+}
