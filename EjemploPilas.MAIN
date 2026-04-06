@@ -1,0 +1,32 @@
+#include <iostream>
+#include "pila.h"
+
+using namespace std;
+
+int main()
+{
+    Pila p1, p2;
+
+    int a;
+
+    for (int i = 0; i < 3; i++)
+    {
+        cout << "Ingrese valor para pila 1: ";
+        cin >> a;
+        p1.Apilar(a);
+    }
+
+    for (int i = 0; i < 3; i++)
+    {
+        cout << "Ingrese valor para pila 2: ";
+        cin >> a;
+        p2.Apilar(a);
+    }
+
+    if (p1.Iguales(p2))
+        cout << "Las pilas son iguales" << endl;
+    else
+        cout << "Las pilas no son iguales" << endl;
+
+    return 0;
+}
