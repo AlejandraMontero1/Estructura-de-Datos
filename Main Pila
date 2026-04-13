@@ -1,0 +1,47 @@
+
+#include "PILA.h"
+
+int main() {
+    PILA p;
+    int opcion;
+
+    do {
+        system("cls");
+        cout << "[:]Pila en lista enlazada" << endl;
+        cout << "[1]Push" << endl;
+        cout << "[2]Pop" << endl;
+        cout << "[3]Mostrar" << endl;
+        cout << "[4]Top" << endl;
+        cout << "[5]Size" << endl;
+        cout << "[0]Salir" << endl;
+        cout << "\nIngresa tu opcion: ";
+        cin >> opcion;
+
+        switch (opcion) {
+        case 1:
+            p.push();
+            break;
+        case 2:
+            p.pop();
+            break;
+        case 3:
+            p.show();
+            break;
+        case 4:
+            p.top();
+            break;
+        case 5:
+            p.size();
+            break;
+        case 0:
+            return 0;
+        default:
+            cout << "Por favor ingresa una opcion correcta.\n";
+            system("pause");
+            break;
+        }
+
+    } while (opcion != 0);
+
+    return 0;
+}
