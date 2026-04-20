@@ -1,0 +1,33 @@
+Main
+#include <iostream>
+#include "pila.h"
+
+using namespace std;
+
+int main() {
+    Pila p;
+    int opcion;
+
+    do {
+        system("cls");
+        cout << "=== PILA DE AUTOS ===\n";
+        cout << "[1] Push\n";
+        cout << "[2] Pop\n";
+        cout << "[3] Mostrar\n";
+        cout << "[4] Top\n";
+        cout << "[5] Size\n";
+        cout << "[0] Salir\n";
+        cout << "Opcion: ";
+        cin >> opcion;
+
+        switch (opcion) {
+        case 1: p.push(); break;
+        case 2: p.pop(); break;
+        case 3: p.show(); break;
+        case 4: p.top(); break;
+        case 5: p.size(); break;
+        }
+    } while (opcion != 0);
+
+    return 0;
+}
