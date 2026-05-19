@@ -1,0 +1,118 @@
+
+#include "Amigo.h"
+
+int main() {
+        
+  
+        int opcion;
+
+    do {
+
+        cout << "\n========== MENU ==========";
+        cout << "\n1. Alta - Registrar";
+        cout << "\n2. Listar";
+        cout << "\n3. Buscar";
+        cout << "\n0. Salir";
+
+        cout << "\nSeleccione opcion: ";
+        cin >> opcion;
+
+        switch (opcion) {
+
+        case 1: {
+
+            ofstream salida("amigos.dat", ios::binary | ios::app);
+
+            Amigo amigo;
+
+            string nombre;
+            string fecha;
+            char sexo;
+
+            cin.ignore();
+
+            cout << "\nNombre: ";
+            getline(cin, nombre);
+
+            cout << "Fecha nacimiento (dd/mm/yyyy): ";
+            getline(cin, fecha);
+
+            cout << "Sexo (M/F): ";
+            cin >> sexo;
+
+            amigo.setDatos(nombre, fecha, sexo);
+
+            amigo.guardarArchivo(salida);
+
+            salida.close();
+
+            cout << "\nRegistro guardado";
+            break;
+        }
+
+        case 2: {
+
+            ifstream entrada("amigos.dat", ios::binary);
+
+            Amigo amigo;
+
+            cout << "\n===== LISTA =====\n";
+
+            while (amigo.leerArchivo(entrada)) {
+
+                amigo.mostrar();
+            }
+
+            entrada.close();
+
+            break;
+        }
+
+        case 3: {
+
+            ifstream entrada("amigos.dat", ios::binary);
+
+            Amigo amigo;
+
+            string buscar;
+
+            cin.ignore();
+
+            cout << "\nNombre a buscar: ";
+            getline(cin, buscar);
+
+            bool encontrado = false;
+
+            while (amigo.leerArchivo(entrada)) {
+
+                if (amigo.compararNombre(buscar)) {
+
+                    amigo.mostrar();
+                    encontrado = true;
+                }
+            }
+
+            if (!encontrado) {
+
+                cout << "\nNo encontrado";
+            }
+
+            entrada.close();
+
+            break;
+        }
+
+        case 0:
+            cout << "\nFin del programa";
+            break;
+
+        default:
+            cout << "\nOpcion incorrecta";
+        }
+
+    } while (opcion != 0);
+
+    return 0;
+   
+
+}
